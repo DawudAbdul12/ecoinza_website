@@ -17,6 +17,7 @@ const data = {
     {
       tag: 'Save',
       headline: 'Save beyond inflation.',
+      headlineLines: ['Save beyond', 'Inflation.'],
       sub: 'Convert your local currency into stable digital dollars and protect your value from depreciation.',
       image: '/images/ecoinza/hero-save.png',
     },
@@ -206,7 +207,7 @@ function renderNav() {
 function renderHero() {
   const slide = data.heroSlides[state.heroIndex];
   $('[data-hero-tag]').textContent = slide.tag;
-  $('[data-hero-headline]').textContent = slide.headline;
+  $('[data-hero-headline]').innerHTML = (slide.headlineLines || [slide.headline]).map(escapeHtml).join('<br>');
   $('[data-hero-sub]').textContent = slide.sub;
 
   const image = $('[data-hero-image]');
