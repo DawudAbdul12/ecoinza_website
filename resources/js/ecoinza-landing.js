@@ -143,7 +143,7 @@ const data = {
     { q: 'When will eCoinza launch?', a: "We're finalizing licensing and security review ahead of public launch. Join the waitlist to be notified the moment early access opens." },
   ],
   countryOptions: ['Ghana', 'Nigeria', 'Kenya', 'South Africa', 'United Kingdom', 'United States', 'European Union', 'Other'],
-  userTypeOptions: ['Individual', 'Business Owner', 'Freelancer', 'Merchant', 'Student', 'Diaspora Sender'],
+  userTypeOptions: ['Individual', 'Business Owner', 'Digital Creator', 'Merchant', 'Student', 'Diaspora Sender'],
   interestOptions: ['Saving in USDC', 'Sending money across countries', 'Deposit and withdrawal', 'Crypto trading', 'Merchant payments', 'Business wallet'],
   footerProduct: [
     { id: 'save', label: 'Save in USDC' },

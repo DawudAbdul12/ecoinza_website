@@ -12,18 +12,47 @@ $ecoinzaPages = [
     'about' => [
         'title' => 'About eCoinza',
         'eyebrow' => 'About eCoinza',
-        'headline' => 'Financial infrastructure for stable value across Africa.',
-        'description' => 'eCoinza is building a stablecoin-powered wallet experience for people, freelancers, businesses, and diaspora families who need money to move clearly between local rails and digital dollars.',
-        'badge' => 'Built for Africa. Connected to the world.',
+        'headline' => 'A modern money platform for stable value across Africa.',
+        'description' => 'eCoinza brings local payment rails, digital dollar savings, crypto access, and cross-border money movement into one clear wallet experience for people and businesses across African markets.',
+        'hero_image' => 'images/ecoinza/about-african-woman-money.png',
+        'hero_image_alt' => 'African woman holding money and a smartphone',
         'stats' => [
             ['value' => '7 markets', 'label' => 'Launch corridor focus'],
             ['value' => 'USDC-first', 'label' => 'Stable value design'],
             ['value' => 'MoMo + Bank', 'label' => 'Local rail support'],
         ],
         'sections' => [
-            ['title' => 'Our Mission', 'body' => 'Make stable digital money feel simple, trusted, and useful for everyday financial life across African markets.'],
-            ['title' => 'Who We Serve', 'body' => 'Individuals protecting savings, business owners managing reserves, freelancers receiving global income, and diaspora families supporting loved ones.'],
-            ['title' => 'What We Believe', 'body' => 'Money should be transparent before it moves, accessible when people need it, and designed around the rails customers already trust.'],
+            ['title' => 'Our Mission', 'body' => 'We are making stable digital money practical for everyday financial life. eCoinza connects mobile money, banks, local currency, and digital dollars in one wallet so people can fund, save, transfer, and withdraw with confidence instead of navigating disconnected systems.', 'image' => 'images/ecoinza/about-mission-realistic.png'],
+            ['title' => 'Who We Serve', 'body' => 'eCoinza is built for savers protecting income, digital creators earning across global platforms, business owners managing working capital, and diaspora families supporting loved ones. The platform is designed around real financial routines, not abstract crypto use cases.', 'image' => 'images/ecoinza/about-who-we-serve-realistic.png'],
+            ['title' => 'What We Believe', 'body' => 'People should understand their money before it moves. That means clear balances, visible rates, transparent fees, identity-aware access, risk monitoring, and product availability that respects local rules and trusted payment rails.', 'image' => 'images/ecoinza/about-believe-realistic.png'],
+        ],
+        'intro' => [
+            'eyebrow' => 'What we are building',
+            'title' => 'eCoinza turns fragmented money movement into one connected wallet.',
+            'body' => 'Many customers across Africa already rely on mobile money, bank transfers, and global digital platforms, but those systems often feel disconnected. eCoinza is designed to make the path between local currency and digital dollars feel clear: fund locally, hold stable value, send when needed, and withdraw through trusted rails.',
+            'points' => [
+                'Deposit from mobile money or bank accounts where supported.',
+                'Convert local balances into USDC for stable digital dollar exposure.',
+                'Move value across wallets, countries, and everyday financial needs.',
+                'Withdraw back to supported local rails with visible confirmation details.',
+            ],
+        ],
+        'pillars' => [
+            ['title' => 'Stable Savings', 'body' => 'Help customers preserve value in USDC while keeping funds accessible for transfers, withdrawals, or future payments.', 'image' => 'images/ecoinza/feature-stable-savings.png'],
+            ['title' => 'Local Access', 'body' => 'Meet users where they already are through mobile money and bank rails instead of forcing new financial habits from day one.', 'image' => 'images/ecoinza/feature-deposit-withdraw.png'],
+            ['title' => 'Cross-Border Utility', 'body' => 'Support families, digital creators, and businesses that need faster, clearer movement between local economies and global value.', 'image' => 'images/ecoinza/feature-cross-border.png'],
+            ['title' => 'Crypto Without Confusion', 'body' => 'Offer supported digital assets through a clean experience that explains balances, confirmations, and transaction context.', 'image' => 'images/ecoinza/feature-crypto-wallet.png'],
+        ],
+        'audiences' => [
+            ['label' => 'Individuals', 'detail' => 'Save in stable digital dollars, transfer funds, and cash out locally when needed.'],
+            ['label' => 'Digital Creators', 'detail' => 'Receive platform income, manage dollar value, and convert into local currency with less friction.'],
+            ['label' => 'Businesses', 'detail' => 'Hold operating reserves, manage supplier payments, and plan around clearer value movement.'],
+            ['label' => 'Diaspora Families', 'detail' => 'Send support home with a wallet flow designed around local withdrawal options.'],
+        ],
+        'principles' => [
+            ['name' => 'Clarity before movement', 'copy' => 'Balances, rates, fees, and destination details should be visible before a customer confirms.'],
+            ['name' => 'Responsible access', 'copy' => 'Identity checks, risk monitoring, and jurisdiction-aware availability are part of the product foundation.'],
+            ['name' => 'Local trust, global reach', 'copy' => 'The platform connects global digital assets to the payment methods customers already trust.'],
         ],
     ],
     'contact' => [
