@@ -10,7 +10,27 @@ const state = {
   swapAmount: '5000',
   testimonialIndex: 0,
   testimonialDirection: 1,
+  chartRange: '30',
 };
+
+const hiddenSectionIds = new Set(['deposit-withdraw', 'crypto']);
+
+function isVisibleTarget(id) {
+  return !hiddenSectionIds.has(id);
+}
+
+function visibleLinks(links) {
+  return links.filter((link) => isVisibleTarget(link.id));
+}
+
+function visibleSections(sections) {
+  return sections
+    .map((section) => ({
+      ...section,
+      items: section.items.filter((item) => isVisibleTarget(item.id)),
+    }))
+    .filter((section) => section.items.length > 0);
+}
 
 const data = {
   heroSlides: [
@@ -41,13 +61,108 @@ const data = {
     },
   ],
   navLinks: [
-    { id: 'save', label: 'Save' },
-    { id: 'deposit-withdraw', label: 'Deposit' },
-    { id: 'deposit-withdraw', label: 'Withdraw' },
-    { id: 'crypto', label: 'Crypto' },
+    { id: 'features', label: 'Products' },
+    { id: 'save', label: 'Business Wallet' },
+    { id: 'deposit-withdraw', label: 'Money Movement' },
+    { id: 'crypto', label: 'Stablecoins & Crypto' },
     { id: 'security', label: 'Security' },
     { id: 'faq', label: 'FAQ' },
   ],
+  navPrimary: [],
+  navProductSections: [
+    {
+      label: 'Products',
+      items: [
+        { id: 'features', title: 'Checkout', desc: 'Let customers pay with local rails or stablecoins from one checkout flow.', icon: 'checkout', details: ['Accept mobile money, bank, card-ready, and stablecoin payment methods through one business checkout.', 'Keep payment status, customer references, settlement currency, and receipts together for easier reconciliation.'] },
+        { id: 'save', title: 'Wallet', desc: 'Hold working capital in local currency, USD, and stable digital dollars.', icon: 'wallet', details: ['Separate operational balances for daily spending, collections, supplier funds, and dollar reserves.', 'Give teams a clearer view of what is available, what is pending, and what is ready to move.'] },
+        { id: 'deposit-withdraw', title: 'Movement', desc: 'Move money between banks, MoMo, wallets, and cross-border corridors.', icon: 'movement', details: ['Route funds through supported local rails while keeping a record of each step.', 'Use one operating layer for collections, internal transfers, and payouts across markets.'] },
+        { id: 'save', title: 'Convert', desc: 'Switch between GHS, USD, USDC, and supported currencies with visible rates.', icon: 'convert', details: ['Show exchange rates before a conversion is confirmed, so finance teams can act with confidence.', 'Move from local currency to stable digital dollars when preserving value matters.'] },
+        { id: 'features', title: 'Cards', desc: 'Turn wallet balances into spend controls for online tools and travel.', icon: 'card', details: ['Create controlled spending workflows for ads, software subscriptions, supplier payments, and travel.', 'Set up clearer limits, records, and funding paths as card features become available.'] },
+        { id: 'features', title: 'Requests', desc: 'Create payment links and invoices for clients, suppliers, and collections.', icon: 'request', details: ['Send a simple payment request when a customer or partner needs to pay from any supported rail.', 'Track whether a request is pending, paid, expired, or needs follow-up.'] },
+        { id: 'features', title: 'Billing', desc: 'Manage recurring collections for subscriptions, retainers, and memberships.', icon: 'billing', details: ['Support repeat payments for service businesses, communities, schools, SaaS tools, and merchant groups.', 'Keep billing cycles, customer references, and collection attempts organized in one place.'] },
+        { id: 'features', title: 'Expense', desc: 'Track team spending, settlement trails, and reconciliation from one view.', icon: 'expense', details: ['Connect payments and wallet activity to cleaner internal expense records.', 'Help finance teams compare money in, money out, fees, balances, and settlement outcomes.'] },
+      ],
+    },
+    {
+      label: 'Embedded Finance',
+      items: [
+        { id: 'features', title: 'Account', desc: 'Create verified customer or business accounts inside your own platform.', icon: 'account', details: ['Build onboarding around identity, business profile, compliance status, and account permissions.', 'Use verified accounts as the base for wallets, collections, conversions, and payouts.'] },
+        { id: 'save', title: 'Embedded Wallet', desc: 'Offer branded balances for fiat, stablecoins, collections, and payouts.', icon: 'wallet-plus', details: ['Add wallet balances to your own product without rebuilding the money movement layer from scratch.', 'Let users hold, receive, convert, and prepare funds for payout inside your platform experience.'] },
+        { id: 'deposit-withdraw', title: 'Payouts', desc: 'Automate supplier, creator, payroll, and marketplace disbursements.', icon: 'movement', details: ['Send funds to supported recipients with clearer payout status and records.', 'Useful for marketplaces, creator platforms, payroll workflows, and supplier settlement.'] },
+        { id: 'features', title: 'Issuing', desc: 'Provision virtual cards for spend management, ads, and global tools.', icon: 'issuing', details: ['Connect wallet value to controlled virtual card workflows for business operations.', 'Support spend use cases like digital ads, subscriptions, procurement, and team allowances.'] },
+      ],
+    },
+  ],
+  navSolutionSections: [
+    {
+      label: 'Industries',
+      items: [
+        { id: 'deposit-withdraw', title: 'Travel', desc: 'Collect bookings locally while holding supplier funds in stable value.', icon: 'travel' },
+        { id: 'features', title: 'Payroll', desc: 'Pay distributed teams and contractors across currencies with clearer records.', icon: 'payroll' },
+        { id: 'deposit-withdraw', title: 'B2B Trading', desc: 'Settle import, export, and supplier invoices without slow wire cycles.', icon: 'trading' },
+        { id: 'features', title: 'Digital Ads', desc: 'Fund ad accounts and campaign spend without repeated card friction.', icon: 'ads' },
+        { id: 'features', title: 'eCommerce', desc: 'Accept local payments, settle globally, and pay sellers from one wallet.', icon: 'ecommerce' },
+      ],
+    },
+  ],
+  navCompanySections: [
+    {
+      label: 'Company',
+      items: [
+        { id: 'security', title: 'About Us', desc: 'Why Ecoinza exists and the businesses we are building for.', icon: 'about' },
+        { id: 'security', title: 'Licenses', desc: 'Our approach to regulated operations, KYB, KYC, and partner rails.', icon: 'licenses' },
+        { id: 'waitlist', title: 'Careers', desc: 'Help build practical financial infrastructure for African businesses.', icon: 'careers' },
+      ],
+    },
+    {
+      label: 'Resource',
+      items: [
+        { id: 'faq', title: 'Blog', desc: 'Guides on stablecoin settlement, local rails, and business payments.', icon: 'blog' },
+        { id: 'faq', title: 'Newsroom', desc: 'Product updates, launch notes, partnerships, and market announcements.', icon: 'newsroom' },
+        { id: 'security', title: 'Industry Whitepaper', desc: 'Research on African trade, stable value, and cross-border liquidity.', icon: 'whitepaper' },
+        { id: 'faq', title: 'FAQs', desc: 'Answers on deposits, withdrawals, wallet safety, rates, and access.', icon: 'faq' },
+      ],
+    },
+  ],
+  navDeveloperSections: [
+    {
+      label: 'Documentation',
+      items: [
+        { id: 'features', title: 'Product Documentation', desc: 'Reference guides for wallets, checkout, transfers, and webhooks.', icon: 'docs' },
+        { id: 'faq', title: 'Getting Started', desc: 'Integration basics, test flows, API keys, and sandbox setup.', icon: 'getting-started' },
+      ],
+    },
+    {
+      label: 'Quick Links',
+      items: [
+        { id: 'features', title: 'Accounts', desc: 'Build onboarding and balance management into your product.', icon: 'account' },
+        { id: 'deposit-withdraw', title: 'Payouts', desc: 'Trigger wallet, bank, MoMo, and stablecoin payouts programmatically.', icon: 'movement' },
+        { id: 'features', title: 'Issuing', desc: 'Connect card creation, limits, and transaction controls to your app.', icon: 'card' },
+      ],
+    },
+  ],
+  navUtility: [
+    { id: 'security', label: 'Compliance' },
+    { id: 'faq', label: 'Resources' },
+  ],
+  navMegaSummaries: {
+    products: {
+      title: 'Products',
+      desc: 'One platform for wallets, collections, conversions, payouts, and settlement.',
+    },
+    solutions: {
+      title: 'Solutions',
+      desc: 'Purpose-built payment workflows for teams moving money across markets.',
+    },
+    company: {
+      title: 'Company',
+      desc: 'Learn about Ecoinza, our compliance posture, resources, and support.',
+    },
+    developers: {
+      title: 'Developers',
+      desc: 'Build accounts, payouts, checkout, and issuing into your product.',
+    },
+  },
   features: [
     { title: 'Stable Savings', desc: "Convert GHS, NGN, KES and more into USDC and hold value that doesn't erode.", image: '/images/ecoinza/feature-stable-savings.png' },
     { title: 'Cross-Border Transfers', desc: 'Send money to Nigeria, Kenya, the UK, US and EU in seconds, not days.', image: '/images/ecoinza/feature-cross-border.png' },
@@ -179,9 +294,44 @@ function escapeHtml(value) {
     .replaceAll("'", '&#039;');
 }
 
+function navProductIcon(type) {
+  const icons = {
+    checkout: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 4.5h8.5l2.5 2.5v5.5"></path><path d="M7 4.5A2.5 2.5 0 0 0 4.5 7v10A2.5 2.5 0 0 0 7 19.5h4.5"></path><path d="M14.5 4.5V8H18"></path><path d="m14 17 2 2 4-5"></path></svg>',
+    wallet: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7.5h14.5a2 2 0 0 1 2 2v7a2 2 0 0 1-2 2H5.5A2.5 2.5 0 0 1 3 16V8.5A2.5 2.5 0 0 1 5.5 6H17"></path><path d="M16 12h4.5"></path><path d="M8 13h4"></path></svg>',
+    movement: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 17.5h6.5l4-3.8a2 2 0 0 1 2.7 0"></path><path d="M8 14.5h4.6a1.6 1.6 0 0 0 0-3.2H10"></path><path d="M15 17.5h2.2l3.8-3.8"></path><path d="M12 5.5h5"></path><path d="M14.5 3v5"></path></svg>',
+    convert: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M17.5 8.5A6 6 0 0 0 7 6.5L5.5 8"></path><path d="M5.5 8h4"></path><path d="M6.5 15.5A6 6 0 0 0 17 17.5l1.5-1.5"></path><path d="M14.5 16h4"></path></svg>',
+    card: '<svg viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="6" width="16" height="12" rx="2"></rect><path d="M4 10h16"></path><path d="M7 15h3"></path></svg>',
+    request: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 4.5h9l3 3v5"></path><path d="M15 4.5V8h3"></path><path d="M6 4.5A2 2 0 0 0 4 6.5v11A2 2 0 0 0 6 19.5h6"></path><path d="m15 18 4-4"></path><path d="M16 14h3v3"></path></svg>',
+    billing: '<svg viewBox="0 0 24 24" aria-hidden="true"><rect x="5" y="5" width="11" height="14" rx="2"></rect><path d="M8 9h5"></path><path d="M8 13h3"></path><path d="m14 17 5-3"></path><path d="m19 14-1 4"></path></svg>',
+    expense: '<svg viewBox="0 0 24 24" aria-hidden="true"><ellipse cx="10" cy="7" rx="5" ry="2.4"></ellipse><path d="M5 7v5c0 1.3 2.2 2.4 5 2.4s5-1.1 5-2.4V7"></path><path d="M9 14.5v2.5c0 1.3 2.2 2.4 5 2.4s5-1.1 5-2.4v-5"></path><path d="M14 11.6c2.8 0 5 1.1 5 2.4s-2.2 2.4-5 2.4"></path></svg>',
+    account: '<svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="6"></circle><path d="M4.5 11h13"></path><path d="M11 5c1.8 1.7 2.7 3.7 2.7 6s-.9 4.3-2.7 6"></path><path d="M11 5c-1.8 1.7-2.7 3.7-2.7 6s.9 4.3 2.7 6"></path><path d="M18 15.5v5"></path><path d="M15.5 18h5"></path></svg>',
+    'wallet-plus': '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7.5h14.5a2 2 0 0 1 2 2v7a2 2 0 0 1-2 2H5.5A2.5 2.5 0 0 1 3 16V8.5A2.5 2.5 0 0 1 5.5 6H17"></path><path d="M16 12h4.5"></path><path d="M8 13h4"></path><path d="M16.5 16v4"></path><path d="M14.5 18h4"></path></svg>',
+    issuing: '<svg viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="6" width="16" height="12" rx="2"></rect><path d="M4 10h16"></path><path d="m10 15-1.5-1.5L10 12"></path><path d="m14 15 1.5-1.5L14 12"></path></svg>',
+    travel: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="m3.5 11 17-6-6 17-3.4-7.1z"></path><path d="m11.1 14.9 4.2-4.2"></path><path d="M7 7.5 4.5 5"></path><path d="M10 6.5 8 3.5"></path></svg>',
+    payroll: '<svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11.5" cy="10.5" r="5.5"></circle><path d="M11.5 8.2v4.6"></path><path d="M9.7 10.5h3.6"></path><path d="M6.5 19.5c1.1-2.1 2.8-3.2 5-3.2"></path><path d="M16.5 15.5 19 18l-2.5 2.5"></path></svg>',
+    trading: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 17h16"></path><path d="M6 17v-5.5l6-3.5 6 3.5V17"></path><path d="M9 17v-4h6v4"></path><path d="M8 8V5.5h8V8"></path></svg>',
+    ads: '<svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="7"></circle><path d="m12 12 4-4"></path><path d="m16 8 .2 3.2"></path><path d="M16 8h-3.2"></path><path d="M8.5 16.2a5.2 5.2 0 0 0 7.4-7.4"></path></svg>',
+    ecommerce: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6.5 18.5V8.8A2.8 2.8 0 0 1 9.3 6h7.2A2.5 2.5 0 0 1 19 8.5V16"></path><path d="M6.5 18.5h7"></path><path d="M15 14h5v6h-5z"></path><path d="M10 6V4.8A2.8 2.8 0 0 1 12.8 2h.7"></path></svg>',
+    about: '<svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="10" cy="7" r="2.3"></circle><path d="M5.5 18.5v-1.4c0-2.4 1.8-4.1 4.5-4.1"></path><path d="M15.6 19.2 12 16.1a2.3 2.3 0 1 1 3.4-3.1l.2.2.2-.2a2.3 2.3 0 1 1 3.4 3.1z"></path></svg>',
+    licenses: '<svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="10" cy="7" r="2.3"></circle><path d="M5.5 18.5v-1.4c0-2.4 1.8-4.1 4.5-4.1h1"></path><path d="m14 16.5 2 2 4-5"></path></svg>',
+    careers: '<svg viewBox="0 0 24 24" aria-hidden="true"><rect x="5" y="5" width="12" height="14" rx="2"></rect><path d="M8 9h6"></path><circle cx="17" cy="15.5" r="2.2"></circle><path d="M13.5 21c.6-1.8 1.8-2.7 3.5-2.7s2.9.9 3.5 2.7"></path></svg>',
+    blog: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17V8a2 2 0 0 1 2-2h8v12H9a2 2 0 0 1-2-2"></path><path d="M5 10v7a2 2 0 0 0 2 2h10"></path><path d="M10 10h4"></path><path d="M10 14h3"></path></svg>',
+    newsroom: '<svg viewBox="0 0 24 24" aria-hidden="true"><rect x="6" y="5" width="12" height="14" rx="2"></rect><path d="M9 9h6"></path><path d="M9 13h4"></path></svg>',
+    whitepaper: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 16.5V9a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v7.5"></path><path d="m8 15 2-2 2 2 2-2 2 2"></path><path d="M8.5 19h7"></path><path d="M9 11h.01"></path><path d="M15 11h.01"></path></svg>',
+    faq: '<svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="8"></circle><path d="M9.8 9.8a2.4 2.4 0 1 1 3.3 2.2c-.8.4-1.1.9-1.1 1.8"></path><path d="M12 16.8h.01"></path></svg>',
+    docs: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5.5 18.5v-11A2.5 2.5 0 0 1 8 5h8.5a2 2 0 0 1 2 2v11.5H8a2.5 2.5 0 0 1-2.5-2.5"></path><path d="M8 18.5V7"></path><path d="M12 10v5"></path><path d="M9.5 12.5h5"></path></svg>',
+    'getting-started': '<svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="5.5" r="2.2"></circle><path d="M12 8v10"></path><path d="M8.5 11.5h7"></path><path d="M8 18h3"></path><path d="M13 18h3"></path><path d="m16.5 10 2.5-2.5"></path><path d="m19 7.5-.2 3"></path></svg>',
+  };
+
+  return icons[type] || icons.wallet;
+}
+
 function scrollToSection(id) {
   const el = document.getElementById(id);
-  if (!el) return;
+  if (!el) {
+    window.location.href = `/#${encodeURIComponent(id)}`;
+    return;
+  }
   const y = el.getBoundingClientRect().top + window.scrollY - 84;
   window.scrollTo({ top: y, behavior: 'smooth' });
   closeMobileMenu();
@@ -192,19 +342,108 @@ function closeMobileMenu() {
   const menu = $('[data-mobile-menu]');
   const toggle = $('[data-menu-toggle]');
   menu?.classList.remove('is-open');
+  document.body.classList.remove('mobile-menu-active');
   if (toggle) {
     toggle.textContent = '☰';
     toggle.setAttribute('aria-expanded', 'false');
   }
 }
 
+function closeDesktopMenus(except = null) {
+  $$('[data-nav-links] .nav-menu-item').forEach((item) => {
+    if (item !== except) {
+      item.classList.remove('is-open');
+      item.querySelector('.nav-menu-trigger')?.setAttribute('aria-expanded', 'false');
+    }
+  });
+}
+
 function renderNav() {
-  const html = data.navLinks.map((link) => `<button type="button" data-target="${link.id}">${escapeHtml(link.label)}</button>`).join('');
-  $('[data-nav-links]').innerHTML = html;
-  $('[data-mobile-menu]').innerHTML = `${html}<button type="button" data-target="waitlist">Join Waitlist</button>`;
+  const renderMegaMenu = ({ label, sections, variant }) => `
+    <div class="nav-menu-item nav-${variant}-item">
+      <button class="nav-menu-trigger nav-${variant}-trigger" type="button" aria-haspopup="true">
+        ${escapeHtml(label)}
+        <span aria-hidden="true"></span>
+      </button>
+      <div class="nav-dropdown nav-mega-dropdown nav-${variant}-dropdown">
+        ${variant === 'products' ? '' : `
+          <aside class="nav-mega-summary">
+            <strong>${escapeHtml(data.navMegaSummaries[variant].title)}</strong>
+            <p>${escapeHtml(data.navMegaSummaries[variant].desc)}</p>
+          </aside>
+        `}
+        <div class="nav-mega-content">
+          ${sections.map((section) => `
+            <div class="nav-product-section">
+              <h3>${escapeHtml(section.label)}</h3>
+              <div class="nav-product-list">
+                ${section.items.map((item) => `
+                  <button type="button" data-target="${item.id}">
+                    <i>${navProductIcon(item.icon)}</i>
+                    <span>
+                      <strong>${escapeHtml(item.title)}</strong>
+                      <small>${escapeHtml(item.desc)}</small>
+                    </span>
+                  </button>
+                `).join('')}
+              </div>
+            </div>
+            `).join('')}
+          </div>
+      </div>
+    </div>
+  `;
+  const productSections = visibleSections(data.navProductSections);
+  const solutionSections = visibleSections(data.navSolutionSections);
+  const companySections = visibleSections(data.navCompanySections);
+  const developerSections = visibleSections(data.navDeveloperSections);
+  const productMenu = renderMegaMenu({ label: 'Products', sections: productSections, variant: 'products' });
+  const solutionsMenu = renderMegaMenu({ label: 'Solutions', sections: solutionSections, variant: 'solutions' });
+  const companyMenu = renderMegaMenu({ label: 'Company', sections: companySections, variant: 'company' });
+  const developersMenu = renderMegaMenu({ label: 'Developers', sections: developerSections, variant: 'developers' });
+  const primary = visibleLinks(data.navPrimary).map((link) => `<button type="button" data-target="${link.id}">${escapeHtml(link.label)}<span aria-hidden="true"></span></button>`).join('');
+  const mobileMenus = [
+    { label: 'Products', sections: productSections },
+    { label: 'Solutions', sections: solutionSections },
+    { label: 'Company', sections: companySections },
+    { label: 'Developers', sections: developerSections },
+  ];
+  const mobileGroups = mobileMenus.map((menu) => `
+    <div class="mobile-menu-group">
+      <button class="mobile-menu-heading" data-mobile-accordion type="button" aria-expanded="false">
+        ${escapeHtml(menu.label)}
+        <span aria-hidden="true"></span>
+      </button>
+      <div class="mobile-menu-panel">
+        ${menu.sections.map((section) => `
+          <div class="mobile-menu-section">
+            <span>${escapeHtml(section.label)}</span>
+            ${section.items.map((item) => `
+              <button type="button" data-target="${item.id}">
+                <i>${navProductIcon(item.icon)}</i>
+                <span>
+                  <strong>${escapeHtml(item.title)}</strong>
+                  <small>${escapeHtml(item.desc)}</small>
+                </span>
+              </button>
+            `).join('')}
+          </div>
+        `).join('')}
+      </div>
+    </div>
+  `).join('');
+
+  $('[data-nav-links]').innerHTML = `${productMenu}${solutionsMenu}${companyMenu}${developersMenu}<div class="nav-utility">${primary}</div>`;
+  $('[data-mobile-menu]').innerHTML = `
+    ${mobileGroups}
+    <div class="mobile-menu-actions">
+      <button type="button" data-target="waitlist">Join Waitlist</button>
+    </div>
+  `;
 }
 
 function renderHero() {
+  if (!$('[data-hero-tag]')) return;
   const slide = data.heroSlides[state.heroIndex];
   $('[data-hero-tag]').textContent = slide.tag;
   $('[data-hero-headline]').innerHTML = (slide.headlineLines || [slide.headline]).map(escapeHtml).join('<br>');
@@ -229,11 +468,13 @@ function renderHero() {
 }
 
 function nextSlide() {
+  if (!$('[data-hero-tag]')) return;
   state.heroIndex = (state.heroIndex + 1) % data.heroSlides.length;
   renderHero();
 }
 
 function previousSlide() {
+  if (!$('[data-hero-tag]')) return;
   state.heroIndex = (state.heroIndex - 1 + data.heroSlides.length) % data.heroSlides.length;
   renderHero();
   resetAutoplay();
@@ -263,45 +504,140 @@ function resetTestimonialAutoplay() {
   testimonialAutoplay = setInterval(nextTestimonial, 6200);
 }
 
+function formatDateInput(date) {
+  return date.toISOString().slice(0, 10);
+}
+
+function setDefaultChartDates() {
+  const start = $('[data-chart-start]');
+  const end = $('[data-chart-end]');
+  if (!start || !end) return;
+
+  const endDate = new Date();
+  const startDate = new Date();
+  startDate.setDate(endDate.getDate() - 29);
+
+  start.value = formatDateInput(startDate);
+  end.value = formatDateInput(endDate);
+}
+
+function updateChartRangeLabel() {
+  const label = $('[data-chart-range-label]');
+  const start = $('[data-chart-start]');
+  const end = $('[data-chart-end]');
+  if (!label) return;
+
+  const labels = {
+    30: 'Last 30 days',
+    90: 'Last 90 days',
+    365: 'Last 365 days',
+    custom: start?.value && end?.value ? `${start.value} to ${end.value}` : 'Custom range',
+  };
+
+  label.textContent = labels[state.chartRange] || labels[30];
+}
+
+function setChartRange(range) {
+  state.chartRange = range;
+  $$('[data-chart-range]').forEach((button) => {
+    button.classList.toggle('is-active', button.dataset.chartRange === range);
+  });
+  const fields = $('[data-chart-date-fields]');
+  if (fields) fields.hidden = range !== 'custom';
+  updateChartRangeLabel();
+}
+
 function renderSimpleLists() {
-  $('[data-features]').innerHTML = data.features.map((feature) => `
-    <article class="feature-card">
-      <div class="feature-visual" aria-hidden="true"><img src="${feature.image}" alt=""></div>
-      <h3>${escapeHtml(feature.title)}</h3><p>${escapeHtml(feature.desc)}</p>
-    </article>
-  `).join('');
+  const platformFeatures = $('[data-platform-features]');
+  if (platformFeatures) {
+    platformFeatures.innerHTML = visibleSections(data.navProductSections).flatMap((section) => (
+      section.items.map((item) => `
+        <article class="feature-menu-card">
+          <figure aria-hidden="true">
+            <i>${navProductIcon(item.icon)}</i>
+            <span>${escapeHtml(section.label)}</span>
+          </figure>
+          <div>
+            <span>${escapeHtml(section.label)}</span>
+            <h3>${escapeHtml(item.title)}</h3>
+            <p>${escapeHtml(item.desc)}</p>
+            ${item.details ? `
+              <ul class="feature-points">
+                ${item.details.map((detail) => `<li>${escapeHtml(detail)}</li>`).join('')}
+              </ul>
+            ` : ''}
+            <button class="link-button js-scroll" data-target="${escapeHtml(item.id)}" type="button">Explore ${escapeHtml(item.title)}</button>
+          </div>
+        </article>
+      `)
+    )).join('');
+  }
 
-  $('[data-inflation-points]').innerHTML = data.inflationPoints.map((point) => `
-    <div>
-      <i></i>
-      <span><strong>${escapeHtml(point.title)}</strong><small>${escapeHtml(point.desc)}</small></span>
-    </div>
-  `).join('');
-  $('[data-swap-points]').innerHTML = data.swapPoints.map((point) => `<div><i></i><span>${escapeHtml(point)}</span></div>`).join('');
-  $('[data-deposit-options]').innerHTML = moneyOptions(data.depositOptions);
-  $('[data-withdraw-options]').innerHTML = moneyOptions(data.withdrawOptions);
+  const featureGrid = $('[data-features]');
+  if (featureGrid) {
+    featureGrid.innerHTML = data.features.map((feature) => `
+      <article class="feature-card">
+        <div class="feature-visual" aria-hidden="true"><img src="${feature.image}" alt=""></div>
+        <h3>${escapeHtml(feature.title)}</h3><p>${escapeHtml(feature.desc)}</p>
+      </article>
+    `).join('');
+  }
 
-  $('[data-tx-history]').innerHTML = data.txHistory.map((tx) => `
-    <article>
-      <span class="tx-step">${escapeHtml(tx.step)}</span>
+  const inflationPoints = $('[data-inflation-points]');
+  if (inflationPoints) {
+    inflationPoints.innerHTML = data.inflationPoints.map((point) => `
       <div>
-        <i style="background:${tx.color}">${cryptoIcon(tx.asset)}</i>
-        <div><small>${escapeHtml(tx.type)} ${escapeHtml(tx.asset)}</small><strong>${escapeHtml(tx.label)}</strong><em>${escapeHtml(tx.status)}</em></div>
+        <i></i>
+        <span><strong>${escapeHtml(point.title)}</strong><small>${escapeHtml(point.desc)}</small></span>
       </div>
-      <strong style="color:${tx.amountColor}">${escapeHtml(tx.amount)}</strong>
-    </article>
-  `).join('');
-  $('[data-crypto-assets]').innerHTML = data.cryptoAssets.map((asset) => `
-    <article class="asset-row"><div><i style="background:${asset.grad}">${cryptoIcon(asset.symbol)}</i><div><strong>${escapeHtml(asset.name)}</strong><small>${escapeHtml(asset.qty)}</small></div></div><div class="asset-value"><strong>${escapeHtml(asset.value)}</strong><small>${escapeHtml(asset.change)}</small></div></article>
-  `).join('');
-  $('[data-crypto-actions]').innerHTML = data.cryptoActions.map((action) => `<button type="button" style="background:${action.bg};color:${action.color};border:1px solid ${action.border}"><i>${actionIcon(action.icon)}</i><span>${escapeHtml(action.label)}</span><small>${escapeHtml(action.hint)}</small></button>`).join('');
+    `).join('');
+  }
 
-  $('[data-steps]').innerHTML = data.steps.map((step) => `<article class="step-card"><strong>${step.n}</strong><h3>${escapeHtml(step.title)}</h3><p>${escapeHtml(step.desc)}</p></article>`).join('');
-  $('[data-trust-badges]').innerHTML = data.trustBadges.map((badge) => `<article class="badge-card"><div class="badge-icon">${trustIcon(badge.icon)}</div><h3>${escapeHtml(badge.title)}</h3><p>${escapeHtml(badge.desc)}</p></article>`).join('');
+  const swapPoints = $('[data-swap-points]');
+  if (swapPoints) swapPoints.innerHTML = data.swapPoints.map((point) => `<div><i></i><span>${escapeHtml(point)}</span></div>`).join('');
+
+  const depositOptions = $('[data-deposit-options]');
+  if (depositOptions) depositOptions.innerHTML = moneyOptions(data.depositOptions);
+
+  const withdrawOptions = $('[data-withdraw-options]');
+  if (withdrawOptions) withdrawOptions.innerHTML = moneyOptions(data.withdrawOptions);
+
+  const txHistory = $('[data-tx-history]');
+  if (txHistory) {
+    txHistory.innerHTML = data.txHistory.map((tx) => `
+      <article>
+        <span class="tx-step">${escapeHtml(tx.step)}</span>
+        <div>
+          <i style="background:${tx.color}">${cryptoIcon(tx.asset)}</i>
+          <div><small>${escapeHtml(tx.type)} ${escapeHtml(tx.asset)}</small><strong>${escapeHtml(tx.label)}</strong><em>${escapeHtml(tx.status)}</em></div>
+        </div>
+        <strong style="color:${tx.amountColor}">${escapeHtml(tx.amount)}</strong>
+      </article>
+    `).join('');
+  }
+
+  const cryptoAssets = $('[data-crypto-assets]');
+  if (cryptoAssets) {
+    cryptoAssets.innerHTML = data.cryptoAssets.map((asset) => `
+      <article class="asset-row"><div><i style="background:${asset.grad}">${cryptoIcon(asset.symbol)}</i><div><strong>${escapeHtml(asset.name)}</strong><small>${escapeHtml(asset.qty)}</small></div></div><div class="asset-value"><strong>${escapeHtml(asset.value)}</strong><small>${escapeHtml(asset.change)}</small></div></article>
+    `).join('');
+  }
+
+  const cryptoActions = $('[data-crypto-actions]');
+  if (cryptoActions) {
+    cryptoActions.innerHTML = data.cryptoActions.map((action) => `<button type="button" style="background:${action.bg};color:${action.color};border:1px solid ${action.border}"><i>${actionIcon(action.icon)}</i><span>${escapeHtml(action.label)}</span><small>${escapeHtml(action.hint)}</small></button>`).join('');
+  }
+
+  const steps = $('[data-steps]');
+  if (steps) steps.innerHTML = data.steps.map((step) => `<article class="step-card"><strong>${step.n}</strong><h3>${escapeHtml(step.title)}</h3><p>${escapeHtml(step.desc)}</p></article>`).join('');
+
+  const trustBadges = $('[data-trust-badges]');
+  if (trustBadges) trustBadges.innerHTML = data.trustBadges.map((badge) => `<article class="badge-card"><div class="badge-icon">${trustIcon(badge.icon)}</div><h3>${escapeHtml(badge.title)}</h3><p>${escapeHtml(badge.desc)}</p></article>`).join('');
   renderTestimonials();
 }
 
 function renderTestimonials() {
+  if (!$('[data-testimonials]')) return;
   const active = data.testimonials[state.testimonialIndex];
   const previous = data.testimonials[(state.testimonialIndex - 1 + data.testimonials.length) % data.testimonials.length];
   const next = data.testimonials[(state.testimonialIndex + 1) % data.testimonials.length];
@@ -374,6 +710,7 @@ function trustIcon(type) {
 }
 
 function renderFaqs() {
+  if (!$('[data-faqs]')) return;
   $('[data-faqs]').innerHTML = data.faqs.map((faq, index) => `
     <article class="faq-item ${index === state.faqOpen ? 'is-open' : ''}">
       <button class="faq-question" type="button" data-faq="${index}"><span>${escapeHtml(faq.q)}</span><span>+</span></button>
@@ -397,6 +734,7 @@ function renderSelect(select, options, placeholder, selected = '') {
 }
 
 function initWaitlist() {
+  if (!$('[data-waitlist-form]')) return;
   renderSelect($('[data-country-options]'), data.countryOptions, 'Select country');
   renderSelect($('[data-user-type-options]'), data.userTypeOptions, 'Select one');
   renderSelect($('[data-interest-options]'), data.interestOptions, 'What brings you to eCoinza?');
@@ -472,11 +810,13 @@ function updateWaitlistCount() {
   } catch (error) {
     state.waitlistExtra = 0;
   }
-  $('[data-waitlist-count]').textContent = `${(2847 + state.waitlistExtra).toLocaleString()} people already joined`;
+  const waitlistCount = $('[data-waitlist-count]');
+  if (waitlistCount) waitlistCount.textContent = `${(2847 + state.waitlistExtra).toLocaleString()} people already joined`;
 }
 
 function showPageToast() {
   const toast = $('[data-page-toast]');
+  if (!toast) return;
   toast.hidden = false;
   setTimeout(() => { toast.hidden = true; }, 4500);
 }
@@ -487,6 +827,7 @@ function initSwap() {
   const amountInput = $('[data-swap-amount]');
   const flipButton = $('[data-swap-flip]');
   const swapForm = $('[data-swap-form]');
+  if (!fromSelect || !toSelect || !amountInput || !flipButton || !swapForm) return;
 
   renderSelect(fromSelect, data.currencies, '', state.swapFrom);
   renderSelect(toSelect, data.currencies, '', state.swapTo);
@@ -561,11 +902,34 @@ function formatAmount(value, code) {
 }
 
 function renderFooter() {
-  $('[data-footer-product]').innerHTML = data.footerProduct.map((link) => `<button class="link-button" type="button" data-target="${link.id}">${escapeHtml(link.label)}</button>`).join('');
-  $('[data-footer-explore]').innerHTML = data.footerExplore.map((label) => `<button class="link-button" type="button">${escapeHtml(label)}</button>`).join('');
-  $('[data-footer-company]').innerHTML = data.footerCompany.map((link) => `<a href="${escapeHtml(link.href)}">${escapeHtml(link.label)}</a>`).join('');
-  $('[data-footer-legal]').innerHTML = data.footerLegal.map((label) => `<button class="link-button" type="button">${escapeHtml(label)}</button>`).join('');
-  $('[data-socials]').innerHTML = data.socials.map((social) => `<span aria-label="${escapeHtml(social.label)}" title="${escapeHtml(social.label)}">${socialIcon(social.icon)}</span>`).join('');
+  if (!$('[data-footer-menu]')) return;
+  const footerMenus = [
+    { label: 'Products', sections: data.navProductSections },
+    { label: 'Solutions', sections: data.navSolutionSections },
+    { label: 'Company', sections: data.navCompanySections },
+    { label: 'Developers', sections: data.navDeveloperSections },
+  ];
+  $('[data-footer-menu]').innerHTML = footerMenus.map((menu) => `
+    <div class="footer-menu-column">
+      <h3>${escapeHtml(menu.label)}</h3>
+      ${visibleSections(menu.sections).flatMap((section) => (
+        section.items.map((item) => (
+          item.title === 'About Us'
+            ? `<a class="link-button" href="/about">${escapeHtml(item.title)}</a>`
+            : item.title === 'FAQs'
+              ? `<button class="link-button" type="button" data-target="faq">${escapeHtml(item.title)}</button>`
+            : `<button class="link-button" type="button">${escapeHtml(item.title)}</button>`
+        ))
+      )).join('')}
+    </div>
+  `).join('');
+  const footerLegal = $('[data-footer-legal]');
+  if (footerLegal) footerLegal.innerHTML = data.footerLegal.map((label) => {
+    const href = `/${label.toLowerCase().replaceAll(' ', '-')}`;
+    return `<a class="link-button" href="${escapeHtml(href)}">${escapeHtml(label)}</a>`;
+  }).join('');
+  const socials = $('[data-socials]');
+  if (socials) socials.innerHTML = data.socials.map((social) => `<span aria-label="${escapeHtml(social.label)}" title="${escapeHtml(social.label)}">${socialIcon(social.icon)}</span>`).join('');
   buildFooterMap();
 }
 
@@ -580,48 +944,115 @@ function socialIcon(type) {
 }
 
 function buildFooterMap() {
+  if (!$('[data-footer-map]')) return;
   $('[data-footer-map]').innerHTML = `
     <defs>
       <pattern id="ecoinzaFooterDots" width="9" height="9" patternUnits="userSpaceOnUse">
         <circle cx="2" cy="2" r="1.15" fill="rgba(248,215,122,0.82)"></circle>
-        <circle cx="6.8" cy="6.8" r="0.72" fill="rgba(45,212,191,0.32)"></circle>
+        <circle cx="6.8" cy="6.8" r="0.72" fill="rgba(255,247,214,0.48)"></circle>
       </pattern>
       <linearGradient id="ecoinzaFooterGlow" x1="0%" y1="0%" x2="100%" y2="0%">
-        <stop offset="0%" stop-color="rgba(248,215,122,0.18)"></stop>
-        <stop offset="38%" stop-color="rgba(248,215,122,0.54)"></stop>
-        <stop offset="74%" stop-color="rgba(255,241,184,0.62)"></stop>
-        <stop offset="100%" stop-color="rgba(45,212,191,0.22)"></stop>
+        <stop offset="0%" stop-color="#fff7d6"></stop>
+        <stop offset="48%" stop-color="#f8d77a"></stop>
+        <stop offset="100%" stop-color="#d9a82e"></stop>
       </linearGradient>
       <mask id="ecoinzaFooterWordMask">
         <rect width="1400" height="460" fill="black"></rect>
         <text x="700" y="440" text-anchor="middle" fill="white" font-family="Plus Jakarta Sans, Inter, sans-serif" font-size="380" font-weight="800" letter-spacing="-21">eCoinza</text>
       </mask>
     </defs>
-    <rect width="1400" height="460" fill="url(#ecoinzaFooterDots)" mask="url(#ecoinzaFooterWordMask)"></rect>
-    <rect width="1400" height="460" fill="url(#ecoinzaFooterGlow)" mask="url(#ecoinzaFooterWordMask)" opacity="0.5"></rect>
+    <rect width="1400" height="460" fill="url(#ecoinzaFooterGlow)" mask="url(#ecoinzaFooterWordMask)" opacity="0.72"></rect>
+    <rect width="1400" height="460" fill="url(#ecoinzaFooterDots)" mask="url(#ecoinzaFooterWordMask)" opacity="0.78"></rect>
   `;
 }
 
 function bindStaticControls() {
   bindScrollTargets();
-  $('[data-prev-slide]').addEventListener('click', previousSlide);
-  $('[data-next-slide]').addEventListener('click', () => {
+  bindDesktopMenus();
+  bindMobileAccordions();
+  bindChartRangeControls();
+  $('[data-prev-slide]')?.addEventListener('click', previousSlide);
+  $('[data-next-slide]')?.addEventListener('click', () => {
     nextSlide();
     resetAutoplay();
   });
-  $('[data-testimonial-prev]').addEventListener('click', () => {
+  $('[data-testimonial-prev]')?.addEventListener('click', () => {
     previousTestimonial();
     resetTestimonialAutoplay();
   });
-  $('[data-testimonial-next]').addEventListener('click', () => {
+  $('[data-testimonial-next]')?.addEventListener('click', () => {
     nextTestimonial();
     resetTestimonialAutoplay();
   });
-  $('[data-menu-toggle]').addEventListener('click', (event) => {
+  $('[data-menu-toggle]')?.addEventListener('click', (event) => {
     state.mobileMenuOpen = !state.mobileMenuOpen;
-    $('[data-mobile-menu]').classList.toggle('is-open', state.mobileMenuOpen);
+    $('[data-mobile-menu]')?.classList.toggle('is-open', state.mobileMenuOpen);
+    document.body.classList.toggle('mobile-menu-active', state.mobileMenuOpen);
     event.currentTarget.textContent = state.mobileMenuOpen ? '✕' : '☰';
     event.currentTarget.setAttribute('aria-expanded', String(state.mobileMenuOpen));
+  });
+}
+
+function bindChartRangeControls() {
+  if (!$('[data-chart-range-panel]')) return;
+  setDefaultChartDates();
+  setChartRange(state.chartRange);
+
+  $$('[data-chart-range]').forEach((button) => {
+    if (button.dataset.boundRange === 'true') return;
+    button.dataset.boundRange = 'true';
+    button.addEventListener('click', () => setChartRange(button.dataset.chartRange || '30'));
+  });
+
+  $$('[data-chart-start], [data-chart-end]').forEach((input) => {
+    if (input.dataset.boundRangeInput === 'true') return;
+    input.dataset.boundRangeInput = 'true';
+    input.addEventListener('change', () => {
+      state.chartRange = 'custom';
+      setChartRange('custom');
+    });
+  });
+}
+
+function bindMobileAccordions() {
+  $$('[data-mobile-accordion]').forEach((trigger) => {
+    if (trigger.dataset.boundAccordion === 'true') return;
+    trigger.dataset.boundAccordion = 'true';
+    trigger.addEventListener('click', () => {
+      const group = trigger.closest('.mobile-menu-group');
+      const nextOpen = !group.classList.contains('is-open');
+      $$('.mobile-menu-group').forEach((item) => {
+        item.classList.remove('is-open');
+        item.querySelector('[data-mobile-accordion]')?.setAttribute('aria-expanded', 'false');
+      });
+      group.classList.toggle('is-open', nextOpen);
+      trigger.setAttribute('aria-expanded', String(nextOpen));
+    });
+  });
+}
+
+function bindDesktopMenus() {
+  $$('[data-nav-links] .nav-menu-trigger').forEach((trigger) => {
+    if (trigger.dataset.boundMenu === 'true') return;
+    trigger.dataset.boundMenu = 'true';
+    trigger.setAttribute('aria-expanded', 'false');
+    trigger.addEventListener('click', (event) => {
+      event.stopPropagation();
+      const item = trigger.closest('.nav-menu-item');
+      const nextOpen = !item.classList.contains('is-open');
+      closeDesktopMenus(item);
+      item.classList.toggle('is-open', nextOpen);
+      trigger.setAttribute('aria-expanded', String(nextOpen));
+    });
+  });
+
+  document.addEventListener('click', (event) => {
+    if (event.target.closest('[data-nav-links] .nav-menu-item')) return;
+    closeDesktopMenus();
+  });
+
+  document.addEventListener('keydown', (event) => {
+    if (event.key === 'Escape') closeDesktopMenus();
   });
 }
 
@@ -629,7 +1060,10 @@ function bindScrollTargets() {
   $$('[data-target]').forEach((button) => {
     if (button.dataset.boundScroll === 'true') return;
     button.dataset.boundScroll = 'true';
-    button.addEventListener('click', () => scrollToSection(button.dataset.target));
+    button.addEventListener('click', () => {
+      closeDesktopMenus();
+      scrollToSection(button.dataset.target);
+    });
   });
 }
 
@@ -645,7 +1079,7 @@ function initActiveNavigation() {
     }, sections[0].id);
 
     $$('[data-nav-links] [data-target]').forEach((button) => {
-      button.classList.toggle('is-active', button.dataset.target === current);
+      button.classList.remove('is-active');
     });
   };
 
@@ -658,6 +1092,8 @@ function initRevealAnimations() {
   const selectors = [
     '.section-heading',
     '.split-grid > *',
+    '.buildway-heading',
+    '.feature-fields > article',
     '.hero-proof > div',
     '.feature-card',
     '.value-metrics > div',
@@ -717,6 +1153,6 @@ document.addEventListener('DOMContentLoaded', () => {
   bindStaticControls();
   initActiveNavigation();
   initRevealAnimations();
-  resetAutoplay();
-  resetTestimonialAutoplay();
+  if ($('[data-hero-tag]')) resetAutoplay();
+  if ($('[data-testimonials]')) resetTestimonialAutoplay();
 });

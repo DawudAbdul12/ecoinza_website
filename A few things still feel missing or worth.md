@@ -21,3 +21,10 @@ Footer dotted wordmark spacing
 The gold wordmark is good, but worth visually checking in-browser to ensure it crops elegantly on laptop and mobile.
 
 Most important next step: I’d polish the footer links/socials/disclaimer, then do a responsive QA pass.
+
+
+light menu CSS with the dark glass panel styling
+
+
+
+Deposit deposit-withdraw section ---- save for the deposit-withdraw page

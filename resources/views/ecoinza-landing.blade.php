@@ -24,11 +24,14 @@
 
                 <div class="nav-links" data-nav-links></div>
 
-                <button class="btn btn-light nav-cta js-scroll" data-target="waitlist" type="button">Join Waitlist</button>
+                <div class="nav-actions">
+                    <button class="nav-login js-scroll" data-target="security" type="button">Security</button>
+                    <button class="btn btn-light nav-cta js-scroll" data-target="waitlist" type="button">Join Waitlist</button>
+                </div>
                 <button class="menu-toggle" data-menu-toggle type="button" aria-label="Open menu" aria-expanded="false">☰</button>
             </nav>
-            <div class="mobile-menu" data-mobile-menu></div>
         </header>
+        <div class="mobile-menu" data-mobile-menu></div>
 
         <main>
             <section id="hero" class="hero section-light">
@@ -60,16 +63,16 @@
                 </div>
                 <div class="container hero-proof">
                     <div>
-                        <i><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M13 3 5 14h6l-1 7 8-11h-6z"></path></svg></i>
-                        <span><strong>8 sec</strong><small>Average transfer simulation</small></span>
+                        <i><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="8"></circle><path d="M4 12h16"></path><path d="M12 4c2 2.2 3 4.8 3 8s-1 5.8-3 8"></path><path d="M12 4c-2 2.2-3 4.8-3 8s1 5.8 3 8"></path></svg></i>
+                        <span><strong>54 countries</strong><small>A continent of fragmented money rails</small></span>
                     </div>
                     <div>
-                        <i><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="8"></circle><path d="M4 12h16"></path><path d="M12 4c2 2.2 3 4.8 3 8s-1 5.8-3 8"></path><path d="M12 4c-2 2.2-3 4.8-3 8s1 5.8 3 8"></path></svg></i>
-                        <span><strong>7 markets</strong><small>Launch corridor focus</small></span>
+                        <i><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="9" cy="8" r="3"></circle><circle cx="16" cy="10" r="2.5"></circle><path d="M3.8 19c.8-3 2.6-4.5 5.2-4.5s4.4 1.5 5.2 4.5"></path><path d="M13.8 17.8c.7-2.1 2-3.1 4-3.1 1.5 0 2.6.6 3.3 1.9"></path></svg></i>
+                        <span><strong>1.5B+ people</strong><small>Growing consumers and businesses</small></span>
                     </div>
                     <div>
                         <i><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="8"></circle><path d="M9.5 14.3c.5.7 1.4 1.1 2.5 1.1 1.3 0 2.2-.6 2.2-1.5 0-2.2-4.2-.9-4.2-3.5 0-.9.8-1.7 2-1.7.9 0 1.7.3 2.2.9"></path><path d="M12 7.3v9.4"></path></svg></i>
-                        <span><strong>USDC-first</strong><small>Designed for stable value</small></span>
+                        <span><strong>$3T+ economy</strong><small>Trade needs faster settlement</small></span>
                     </div>
                     <div>
                         <i><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="5" width="7" height="14" rx="2"></rect><path d="M6.5 16h2"></path><path d="M14 8h6"></path><path d="M15 12h4"></path><path d="M14 16h6"></path></svg></i>
@@ -80,63 +83,67 @@
 
             <section id="features" class="section-dark features-section">
                 <div class="container">
-                    <div class="section-heading">
-                        <span>Everything In One Wallet</span>
-                        <h2>Built for how Africa moves money.</h2>
+                    <div class="features-story">
+                        <div class="features-story-copy">
+                            <span class="feature-pill">Borderless Money Infrastructure</span>
+                            <h2>One Financial Layer For African Businesses Moving Locally And Globally.</h2>
+                            <p>eCoinza brings wallets, local rails, stablecoin settlement, checkout, and payout records into one operating system for merchants, platforms, importers, and growing teams.</p>
+                            <div class="features-actions">
+                                <button class="btn btn-light js-scroll" data-target="waitlist" type="button">Join Waitlist</button>
+                                <button class="btn btn-outline-light js-scroll" data-target="save" type="button">Explore Platform Features</button>
+                            </div>
+                        </div>
+                        <div class="features-market-visual" aria-label="Market woman using eCoinza">
+                            <figure class="market-image-card">
+                                <img src="{{ asset('images/ecoinza/feature-market-woman.png') }}" alt="African market woman using a smartphone at her produce stall">
+                            </figure>
+                            <div class="market-floating-card market-floating-card-left">
+                                <span>Merchant Collection</span>
+                                <strong>MoMo Paid</strong>
+                            </div>
+                            <div class="market-floating-card market-floating-card-right">
+                                <span>Settlement</span>
+                                <strong>USDC Ready</strong>
+                            </div>
+                        </div>
                     </div>
-                    <div class="feature-grid" data-features></div>
                 </div>
             </section>
 
             <section id="save" class="section-light split-section">
-                <div class="container split-grid">
-                    <div class="value-copy">
-                        <span class="kicker dark">Protect Your Value</span>
-                        <h2>Keep wealth in stable dollars, ready when life needs it.</h2>
-                        <p>eCoinza helps you move idle local currency into USDC, a digital dollar designed to preserve spending power while keeping your money liquid across mobile money and bank rails.</p>
-                        <div class="value-metrics" aria-label="Value protection highlights">
-                            <div><strong>24/7</strong><span>Move in and out when markets shift</span></div>
-                            <div><strong>USDC</strong><span>Stable digital dollar reserve</span></div>
-                            <div><strong>0 lockups</strong><span>Withdraw back to local rails anytime</span></div>
-                        </div>
-                        <div class="point-list dark" data-inflation-points></div>
+                <div class="container buildway-section">
+                    <div class="buildway-heading">
+                        <span class="kicker dark">Platform Features</span>
+                        <h2>Secure. Global. Stablecoin-native. Build your way.</h2>
+                        <p>eCoinza gives businesses the foundation to collect, hold, convert, and move value across local rails and digital dollar settlement.</p>
                     </div>
-                    <div class="value-card">
-                        <div class="value-card-header">
-                            <div>
-                                <span>Reserve Scenario</span>
-                                <h3>Value protected over 12 months</h3>
-                            </div>
-                            <strong>USDC Vault</strong>
+                    <div class="chart-range-panel" data-chart-range-panel>
+                        <div class="chart-range-copy">
+                            <span>Chart range</span>
+                            <strong data-chart-range-label>Last 30 days</strong>
                         </div>
-                        <div class="value-rate-strip" aria-label="Example conversion">
-                            <span>Starting balance</span>
-                            <strong>GHS 10,000</strong>
-                            <em>Converted to $860 USDC</em>
+                        <div class="chart-range-controls" role="group" aria-label="Chart range">
+                            <button class="is-active" type="button" data-chart-range="30">Last 30 days</button>
+                            <button type="button" data-chart-range="90">Last 90 days</button>
+                            <button type="button" data-chart-range="365">Last 365 days</button>
+                            <button type="button" data-chart-range="custom">Custom range</button>
                         </div>
-                        <div class="bar-chart">
-                            <div><span class="bar local"></span><small>Local cash<br><b>Real value -21.5%</b></small></div>
-                            <div><span class="bar stable"></span><small>eCoinza USDC<br><b>Value held in dollars</b></small></div>
-                        </div>
-                        <div class="value-stats">
-                            <div><small>Local cash after inflation</small><strong>₵7,850</strong><span>Purchasing power compressed</span></div>
-                            <div><small>Protected dollar reserve</small><strong>$860.00</strong><span>Held in USDC, accessible anytime</span></div>
-                        </div>
-                        <div class="value-comparison">
-                            <div>
-                                <span>Before</span>
-                                <strong>Savings sit exposed to depreciation, even when untouched.</strong>
-                            </div>
-                            <div>
-                                <span>With eCoinza</span>
-                                <strong>Store in stable digital dollars, then cash out locally when you are ready.</strong>
-                            </div>
+                        <div class="chart-date-fields" data-chart-date-fields hidden>
+                            <label>
+                                <span>Start</span>
+                                <input type="date" data-chart-start>
+                            </label>
+                            <label>
+                                <span>End</span>
+                                <input type="date" data-chart-end>
+                            </label>
                         </div>
                     </div>
+                    <div class="feature-fields" data-platform-features aria-label="eCoinza platform features"></div>
                 </div>
             </section>
 
-            <section id="deposit-withdraw" class="section-light deposit-section">
+            <section id="deposit-withdraw" class="section-light deposit-section" hidden aria-hidden="true">
                 <div class="container">
                     <div class="section-heading dark-heading">
                         <span>Move Money Freely</span>
@@ -200,9 +207,9 @@
                 </div>
             </section>
 
-            <section id="crypto" class="section-dark crypto-section">
-                <div class="container split-grid">
-                    <div>
+            <section id="crypto" class="section-dark crypto-section" hidden aria-hidden="true">
+                <div class="container crypto-grid">
+                    <div class="crypto-copy">
                         <span class="kicker">Crypto Made Simple</span>
                         <h2>A premium crypto wallet without the noise.</h2>
                         <p>Buy, sell, hold, and send popular digital assets like BTC, ETH, USDT, USDC, BNB, and SOL from a clean wallet designed for everyday money movement.</p>
@@ -317,9 +324,9 @@
                 </div>
             </section>
 
-            <section id="faq" class="section-dark faq-section">
+            <section id="faq" class="section-light faq-section">
                 <div class="container narrow">
-                    <div class="section-heading">
+                    <div class="section-heading dark-heading">
                         <span>Questions</span>
                         <h2>Frequently asked questions.</h2>
                     </div>
@@ -340,15 +347,13 @@
                     <p class="footer-disclaimer">eCoinza is a fintech platform, not a bank. Digital assets may fluctuate in value, and product availability may vary by jurisdiction and compliance review.</p>
                     <div class="socials" data-socials></div>
                 </div>
-                <div><h3>Product</h3><div data-footer-product></div></div>
-                <div><h3>Explore</h3><div data-footer-explore></div></div>
-                <div><h3>Discover eCoinza</h3><div data-footer-company></div></div>
+                <div class="footer-menu-grid" data-footer-menu></div>
             </div>
             <div class="container footer-bottom">
                 <div><img src="{{ asset('images/ecoinza/logo-white.png') }}" alt="eCoinza" class="footer-logo"><span>© 2026. All rights reserved.</span></div>
                 <div data-footer-legal></div>
             </div>
-            <div class="footer-map"><svg viewBox="0 0 1400 460" preserveAspectRatio="xMidYMax slice" data-footer-map></svg></div>
+            <div class="footer-map"><svg viewBox="0 0 1400 460" preserveAspectRatio="xMidYMid meet" data-footer-map></svg></div>
         </footer>
 
         <div class="toast" data-page-toast hidden>
