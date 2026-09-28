@@ -28,3 +28,11 @@ light menu CSS with the dark glass panel styling
 
 
 Deposit deposit-withdraw section ---- save for the deposit-withdraw page
+\
+
+
+
+create similar for ecoinza 
+and put it on 
+API & SDK Integration image section
+as senior graphic designer

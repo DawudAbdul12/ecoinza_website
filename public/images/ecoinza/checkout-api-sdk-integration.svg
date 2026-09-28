@@ -1,0 +1,87 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 740" role="img" aria-labelledby="title desc">
+  <title id="title">eCoinza API and SDK integration code panels</title>
+  <desc id="desc">Dark layered terminal panels showing eCoinza checkout API and SDK integration snippets.</desc>
+  <defs>
+    <radialGradient id="glow" cx="50%" cy="48%" r="62%">
+      <stop offset="0" stop-color="#0f766e" stop-opacity="0.35"/>
+      <stop offset="0.42" stop-color="#111827" stop-opacity="0.18"/>
+      <stop offset="1" stop-color="#050505" stop-opacity="1"/>
+    </radialGradient>
+    <linearGradient id="panel" x1="0" x2="1" y1="0" y2="1">
+      <stop offset="0" stop-color="#33353a"/>
+      <stop offset="1" stop-color="#17181b"/>
+    </linearGradient>
+    <linearGradient id="frontPanel" x1="0" x2="1" y1="0" y2="1">
+      <stop offset="0" stop-color="#181a1d"/>
+      <stop offset="1" stop-color="#0d0e10"/>
+    </linearGradient>
+    <linearGradient id="amber" x1="0" x2="1">
+      <stop offset="0" stop-color="#fff7d6"/>
+      <stop offset="0.55" stop-color="#f8d77a"/>
+      <stop offset="1" stop-color="#d9a82e"/>
+    </linearGradient>
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="150%">
+      <feDropShadow dx="0" dy="28" stdDeviation="24" flood-color="#000" flood-opacity="0.42"/>
+    </filter>
+    <filter id="softGlow" x="-30%" y="-30%" width="160%" height="160%">
+      <feGaussianBlur stdDeviation="28"/>
+    </filter>
+  </defs>
+
+  <rect width="1200" height="740" fill="#050505"/>
+  <ellipse cx="650" cy="376" rx="420" ry="250" fill="#0f766e" opacity="0.18" filter="url(#softGlow)"/>
+  <ellipse cx="426" cy="204" rx="260" ry="150" fill="#f8d77a" opacity="0.08" filter="url(#softGlow)"/>
+  <rect width="1200" height="740" fill="url(#glow)"/>
+
+  <g filter="url(#shadow)">
+    <rect x="154" y="92" width="620" height="444" rx="32" fill="url(#panel)"/>
+    <rect x="154" y="92" width="620" height="62" rx="32" fill="#222428"/>
+    <rect x="154" y="132" width="620" height="22" fill="#222428"/>
+    <circle cx="204" cy="123" r="8" fill="#f87171" opacity="0.78"/>
+    <circle cx="230" cy="123" r="8" fill="#f8d77a" opacity="0.9"/>
+    <circle cx="256" cy="123" r="8" fill="#2dd4bf" opacity="0.85"/>
+    <text x="300" y="130" fill="#a1a1aa" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="20" font-weight="700">checkout-session.sh</text>
+
+    <g font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="22">
+      <text x="204" y="204" fill="#d4d4d8">1</text>
+      <text x="254" y="204" fill="#f4f4f5">curl --request POST \</text>
+      <text x="254" y="246" fill="#2dd4bf">https://api.ecoinza.com/v1/checkout/sessions</text>
+      <text x="204" y="302" fill="#d4d4d8">2</text>
+      <text x="254" y="302" fill="#f4f4f5">--header "Authorization: Bearer</text>
+      <text x="254" y="344" fill="#71717a">sk_live_••••••••••••••••••"</text>
+      <text x="204" y="400" fill="#d4d4d8">3</text>
+      <text x="254" y="400" fill="#f4f4f5">--data currency="USDC"</text>
+      <text x="204" y="456" fill="#d4d4d8">4</text>
+      <text x="254" y="456" fill="#f4f4f5">--data payment_method="momo,bank,wallet"</text>
+    </g>
+  </g>
+
+  <g filter="url(#shadow)">
+    <rect x="432" y="245" width="626" height="404" rx="28" fill="url(#frontPanel)"/>
+    <rect x="432" y="245" width="626" height="58" rx="28" fill="#202124"/>
+    <rect x="432" y="281" width="626" height="22" fill="#202124"/>
+    <path d="M432 245h190l32 29-32 29H432z" fill="url(#amber)"/>
+    <text x="470" y="282" fill="#18120a" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="19" font-weight="800">SDK</text>
+    <text x="682" y="282" fill="#f8d77a" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="20" font-weight="700">checkout.js</text>
+
+    <g font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="21">
+      <text x="474" y="360" fill="#d4d4d8">1</text>
+      <text x="524" y="360" fill="#f4f4f5">import { checkout } from "@ecoinza/sdk";</text>
+      <text x="474" y="414" fill="#d4d4d8">2</text>
+      <text x="524" y="414" fill="#2dd4bf">await checkout.create({</text>
+      <text x="568" y="456" fill="#f4f4f5">amount: "125.00",</text>
+      <text x="568" y="498" fill="#f4f4f5">settlement: "USDC",</text>
+      <text x="568" y="540" fill="#f4f4f5">methods: ["mobile_money", "bank", "wallet"],</text>
+      <text x="524" y="582" fill="#2dd4bf">});</text>
+      <text x="474" y="628" fill="#d4d4d8">3</text>
+      <text x="524" y="628" fill="#f8d77a">webhook: payment.confirmed</text>
+    </g>
+  </g>
+
+  <g opacity="0.72">
+    <rect x="802" y="105" width="118" height="34" rx="17" fill="#0f766e"/>
+    <text x="827" y="128" fill="#ecfeff" font-family="Inter, Arial, sans-serif" font-size="15" font-weight="800">API</text>
+    <rect x="932" y="105" width="136" height="34" rx="17" fill="#f8d77a"/>
+    <text x="957" y="128" fill="#18120a" font-family="Inter, Arial, sans-serif" font-size="15" font-weight="800">WEBHOOKS</text>
+  </g>
+</svg>

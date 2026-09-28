@@ -117,28 +117,6 @@
                         <h2>Secure. Global. Stablecoin-native. Build your way.</h2>
                         <p>eCoinza gives businesses the foundation to collect, hold, convert, and move value across local rails and digital dollar settlement.</p>
                     </div>
-                    <div class="chart-range-panel" data-chart-range-panel>
-                        <div class="chart-range-copy">
-                            <span>Chart range</span>
-                            <strong data-chart-range-label>Last 30 days</strong>
-                        </div>
-                        <div class="chart-range-controls" role="group" aria-label="Chart range">
-                            <button class="is-active" type="button" data-chart-range="30">Last 30 days</button>
-                            <button type="button" data-chart-range="90">Last 90 days</button>
-                            <button type="button" data-chart-range="365">Last 365 days</button>
-                            <button type="button" data-chart-range="custom">Custom range</button>
-                        </div>
-                        <div class="chart-date-fields" data-chart-date-fields hidden>
-                            <label>
-                                <span>Start</span>
-                                <input type="date" data-chart-start>
-                            </label>
-                            <label>
-                                <span>End</span>
-                                <input type="date" data-chart-end>
-                            </label>
-                        </div>
-                    </div>
                     <div class="feature-fields" data-platform-features aria-label="eCoinza platform features"></div>
                 </div>
             </section>

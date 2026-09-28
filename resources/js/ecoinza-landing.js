@@ -10,7 +10,6 @@ const state = {
   swapAmount: '5000',
   testimonialIndex: 0,
   testimonialDirection: 1,
-  chartRange: '30',
 };
 
 const hiddenSectionIds = new Set(['deposit-withdraw', 'crypto']);
@@ -73,7 +72,7 @@ const data = {
     {
       label: 'Products',
       items: [
-        { id: 'features', title: 'Checkout', desc: 'Let customers pay with local rails or stablecoins from one checkout flow.', icon: 'checkout', details: ['Accept mobile money, bank, card-ready, and stablecoin payment methods through one business checkout.', 'Keep payment status, customer references, settlement currency, and receipts together for easier reconciliation.'] },
+        { id: 'features', href: '/checkout', title: 'Checkout', desc: 'Let customers pay with local rails or stablecoins from one checkout flow.', icon: 'checkout', details: ['Accept mobile money, bank, card-ready, and stablecoin payment methods through one business checkout.', 'Keep payment status, customer references, settlement currency, and receipts together for easier reconciliation.'] },
         { id: 'save', title: 'Wallet', desc: 'Hold working capital in local currency, USD, and stable digital dollars.', icon: 'wallet', details: ['Separate operational balances for daily spending, collections, supplier funds, and dollar reserves.', 'Give teams a clearer view of what is available, what is pending, and what is ready to move.'] },
         { id: 'deposit-withdraw', title: 'Movement', desc: 'Move money between banks, MoMo, wallets, and cross-border corridors.', icon: 'movement', details: ['Route funds through supported local rails while keeping a record of each step.', 'Use one operating layer for collections, internal transfers, and payouts across markets.'] },
         { id: 'save', title: 'Convert', desc: 'Switch between GHS, USD, USDC, and supported currencies with visible rates.', icon: 'convert', details: ['Show exchange rates before a conversion is confirmed, so finance teams can act with confidence.', 'Move from local currency to stable digital dollars when preserving value matters.'] },
@@ -359,6 +358,20 @@ function closeDesktopMenus(except = null) {
 }
 
 function renderNav() {
+  const renderMenuAction = (item) => {
+    const content = `
+      <i>${navProductIcon(item.icon)}</i>
+      <span>
+        <strong>${escapeHtml(item.title)}</strong>
+        <small>${escapeHtml(item.desc)}</small>
+      </span>
+    `;
+
+    return item.href
+      ? `<a href="${escapeHtml(item.href)}">${content}</a>`
+      : `<button type="button" data-target="${item.id}">${content}</button>`;
+  };
+
   const renderMegaMenu = ({ label, sections, variant }) => `
     <div class="nav-menu-item nav-${variant}-item">
       <button class="nav-menu-trigger nav-${variant}-trigger" type="button" aria-haspopup="true">
@@ -377,15 +390,7 @@ function renderNav() {
             <div class="nav-product-section">
               <h3>${escapeHtml(section.label)}</h3>
               <div class="nav-product-list">
-                ${section.items.map((item) => `
-                  <button type="button" data-target="${item.id}">
-                    <i>${navProductIcon(item.icon)}</i>
-                    <span>
-                      <strong>${escapeHtml(item.title)}</strong>
-                      <small>${escapeHtml(item.desc)}</small>
-                    </span>
-                  </button>
-                `).join('')}
+                ${section.items.map(renderMenuAction).join('')}
               </div>
             </div>
             `).join('')}
@@ -418,15 +423,7 @@ function renderNav() {
         ${menu.sections.map((section) => `
           <div class="mobile-menu-section">
             <span>${escapeHtml(section.label)}</span>
-            ${section.items.map((item) => `
-              <button type="button" data-target="${item.id}">
-                <i>${navProductIcon(item.icon)}</i>
-                <span>
-                  <strong>${escapeHtml(item.title)}</strong>
-                  <small>${escapeHtml(item.desc)}</small>
-                </span>
-              </button>
-            `).join('')}
+            ${section.items.map(renderMenuAction).join('')}
           </div>
         `).join('')}
       </div>
@@ -504,49 +501,6 @@ function resetTestimonialAutoplay() {
   testimonialAutoplay = setInterval(nextTestimonial, 6200);
 }
 
-function formatDateInput(date) {
-  return date.toISOString().slice(0, 10);
-}
-
-function setDefaultChartDates() {
-  const start = $('[data-chart-start]');
-  const end = $('[data-chart-end]');
-  if (!start || !end) return;
-
-  const endDate = new Date();
-  const startDate = new Date();
-  startDate.setDate(endDate.getDate() - 29);
-
-  start.value = formatDateInput(startDate);
-  end.value = formatDateInput(endDate);
-}
-
-function updateChartRangeLabel() {
-  const label = $('[data-chart-range-label]');
-  const start = $('[data-chart-start]');
-  const end = $('[data-chart-end]');
-  if (!label) return;
-
-  const labels = {
-    30: 'Last 30 days',
-    90: 'Last 90 days',
-    365: 'Last 365 days',
-    custom: start?.value && end?.value ? `${start.value} to ${end.value}` : 'Custom range',
-  };
-
-  label.textContent = labels[state.chartRange] || labels[30];
-}
-
-function setChartRange(range) {
-  state.chartRange = range;
-  $$('[data-chart-range]').forEach((button) => {
-    button.classList.toggle('is-active', button.dataset.chartRange === range);
-  });
-  const fields = $('[data-chart-date-fields]');
-  if (fields) fields.hidden = range !== 'custom';
-  updateChartRangeLabel();
-}
-
 function renderSimpleLists() {
   const platformFeatures = $('[data-platform-features]');
   if (platformFeatures) {
@@ -566,7 +520,10 @@ function renderSimpleLists() {
                 ${item.details.map((detail) => `<li>${escapeHtml(detail)}</li>`).join('')}
               </ul>
             ` : ''}
-            <button class="link-button js-scroll" data-target="${escapeHtml(item.id)}" type="button">Explore ${escapeHtml(item.title)}</button>
+            ${item.href
+              ? `<a class="link-button" href="${escapeHtml(item.href)}">Explore ${escapeHtml(item.title)}</a>`
+              : `<button class="link-button js-scroll" data-target="${escapeHtml(item.id)}" type="button">Explore ${escapeHtml(item.title)}</button>`
+            }
           </div>
         </article>
       `)
@@ -916,6 +873,8 @@ function renderFooter() {
         section.items.map((item) => (
           item.title === 'About Us'
             ? `<a class="link-button" href="/about">${escapeHtml(item.title)}</a>`
+            : item.href
+              ? `<a class="link-button" href="${escapeHtml(item.href)}">${escapeHtml(item.title)}</a>`
             : item.title === 'FAQs'
               ? `<button class="link-button" type="button" data-target="faq">${escapeHtml(item.title)}</button>`
             : `<button class="link-button" type="button">${escapeHtml(item.title)}</button>`
@@ -970,7 +929,6 @@ function bindStaticControls() {
   bindScrollTargets();
   bindDesktopMenus();
   bindMobileAccordions();
-  bindChartRangeControls();
   $('[data-prev-slide]')?.addEventListener('click', previousSlide);
   $('[data-next-slide]')?.addEventListener('click', () => {
     nextSlide();
@@ -990,27 +948,6 @@ function bindStaticControls() {
     document.body.classList.toggle('mobile-menu-active', state.mobileMenuOpen);
     event.currentTarget.textContent = state.mobileMenuOpen ? '✕' : '☰';
     event.currentTarget.setAttribute('aria-expanded', String(state.mobileMenuOpen));
-  });
-}
-
-function bindChartRangeControls() {
-  if (!$('[data-chart-range-panel]')) return;
-  setDefaultChartDates();
-  setChartRange(state.chartRange);
-
-  $$('[data-chart-range]').forEach((button) => {
-    if (button.dataset.boundRange === 'true') return;
-    button.dataset.boundRange = 'true';
-    button.addEventListener('click', () => setChartRange(button.dataset.chartRange || '30'));
-  });
-
-  $$('[data-chart-start], [data-chart-end]').forEach((input) => {
-    if (input.dataset.boundRangeInput === 'true') return;
-    input.dataset.boundRangeInput = 'true';
-    input.addEventListener('change', () => {
-      state.chartRange = 'custom';
-      setChartRange('custom');
-    });
   });
 }
 

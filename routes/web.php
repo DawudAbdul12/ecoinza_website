@@ -17,9 +17,9 @@ $ecoinzaPages = [
         'hero_image' => 'images/ecoinza/about-african-woman-money.png',
         'hero_image_alt' => 'African woman holding money and a smartphone',
         'stats' => [
-            ['value' => '7 markets', 'label' => 'Launch corridor focus'],
-            ['value' => 'USDC-first', 'label' => 'Stable value design'],
-            ['value' => 'MoMo + Bank', 'label' => 'Local rail support'],
+            ['value' => '54 countries', 'label' => 'A continent of fragmented money rails'],
+            ['value' => '1.5B+ people', 'label' => 'Growing consumers and businesses'],
+            ['value' => '$3T+ economy', 'label' => 'Trade needs faster settlement'],
         ],
         'sections' => [
             ['title' => 'Our Mission', 'body' => 'We are making stable digital money practical for everyday financial life. eCoinza connects mobile money, banks, local currency, and digital dollars in one wallet so people can fund, save, transfer, and withdraw with confidence instead of navigating disconnected systems.', 'image' => 'images/ecoinza/about-mission-realistic.png'],
@@ -35,6 +35,11 @@ $ecoinzaPages = [
                 'Convert local balances into USDC for stable digital dollar exposure.',
                 'Move value across wallets, countries, and everyday financial needs.',
                 'Withdraw back to supported local rails with visible confirmation details.',
+            ],
+            'metrics' => [
+                ['value' => '54 countries', 'label' => 'A continent of fragmented money rails'],
+                ['value' => '1.5B+ people', 'label' => 'Growing consumers and businesses'],
+                ['value' => '$3T+ economy', 'label' => 'Trade needs faster settlement'],
             ],
         ],
         'pillars' => [
@@ -53,6 +58,73 @@ $ecoinzaPages = [
             ['name' => 'Clarity before movement', 'copy' => 'Balances, rates, fees, and destination details should be visible before a customer confirms.'],
             ['name' => 'Responsible access', 'copy' => 'Identity checks, risk monitoring, and jurisdiction-aware availability are part of the product foundation.'],
             ['name' => 'Local trust, global reach', 'copy' => 'The platform connects global digital assets to the payment methods customers already trust.'],
+        ],
+    ],
+    'checkout' => [
+        'title' => 'Checkout',
+        'eyebrow' => 'Checkout',
+        'headline' => 'Checkout pages for local payments and stablecoin settlement.',
+        'description' => 'Accept customer payments through clean hosted checkout pages, payment links, and API-ready flows while keeping local currency, USDC settlement, fees, and payment status easier to reconcile.',
+        'hero_image' => 'images/ecoinza/product-checkout-hero.png',
+        'hero_image_alt' => 'eCoinza checkout interface showing local currency and USDC settlement',
+        'story_layout' => true,
+        'stats' => [
+            ['value' => 'Hosted', 'label' => 'Checkout pages and payment links'],
+            ['value' => 'USDC', 'label' => 'Stablecoin settlement support'],
+            ['value' => 'Local rails', 'label' => 'Built around familiar payment methods'],
+        ],
+        'sections' => [
+            ['title' => 'Accept More Ways To Pay', 'body' => 'Create a checkout experience where customers can pay through supported local rails or stablecoins without forcing your team to manage disconnected collection paths.', 'image' => 'images/ecoinza/feature-merchant-payments.png'],
+            ['title' => 'Settle With Clear Records', 'body' => 'Track the customer, payment method, settlement currency, fees, references, and status in one place so finance teams can reconcile collections faster.', 'image' => 'images/ecoinza/feature-stable-savings.png'],
+            ['title' => 'Launch Without Heavy Build Time', 'body' => 'Start with hosted checkout pages or payment links, then move into API and embedded flows as your business needs deeper control.', 'image' => 'images/ecoinza/feature-deposit-withdraw.png'],
+        ],
+        'intro' => [
+            'eyebrow' => 'How checkout works',
+            'title' => 'One checkout flow for customers, merchants, and settlement teams.',
+            'body' => 'The checkout product is designed for African businesses that need local collection methods and global-value settlement in the same workflow. Customers get a simple payment page. Merchants get clearer records, faster status visibility, and a path to hold value in stable digital dollars where supported.',
+            'points' => [
+                'Generate a hosted checkout page or payment link for an order.',
+                'Let customers choose supported local currency or stablecoin payment methods.',
+                'Confirm payment status, settlement currency, references, and fees in one record.',
+                'Use APIs and webhooks when your product needs a deeper checkout integration.',
+            ],
+            'metrics' => [
+                ['value' => 'Links', 'label' => 'Send payment requests without code'],
+                ['value' => 'Hosted', 'label' => 'Use ready-made checkout pages'],
+                ['value' => 'API', 'label' => 'Embed checkout into your own product'],
+            ],
+        ],
+        'pillars_heading' => [
+            'eyebrow' => 'Deployment paths',
+            'title' => 'Start simple, then integrate deeper when you are ready.',
+            'body' => 'Use the checkout path that matches your current team and platform, from shareable links to developer-led integrations.',
+        ],
+        'pillars' => [
+            ['title' => 'Hosted Checkout', 'body' => 'Redirect customers to a secure eCoinza-hosted page with amount, currency, method choices, and payment confirmation.', 'image' => 'images/ecoinza/product-checkout-hero.png'],
+            ['title' => 'Payment Links', 'body' => 'Share a link for invoices, social commerce, WhatsApp sales, deposits, or one-off customer collections.', 'image' => 'images/ecoinza/payment-links-qr.svg'],
+            ['title' => 'API & SDK Integration', 'body' => 'Build checkout into your own product and receive payment events for order fulfillment and reconciliation.', 'image' => 'images/ecoinza/checkout-api-sdk-integration.svg'],
+            ['title' => 'Platform Plugins', 'body' => 'Prepare checkout flows for commerce platforms and internal tools as your operations scale.', 'image' => 'images/ecoinza/feature-cross-border.png'],
+        ],
+        'audiences_heading' => [
+            'eyebrow' => 'Who it helps',
+            'title' => 'Checkout flows for businesses that sell across channels and borders.',
+        ],
+        'audiences' => [
+            ['label' => 'E-commerce', 'detail' => 'Collect local payments online while keeping settlement records connected to customer orders.'],
+            ['label' => 'Marketplaces', 'detail' => 'Support seller, vendor, and buyer payment flows with cleaner payment status and payout preparation.'],
+            ['label' => 'B2B Trading', 'detail' => 'Request invoice payments, deposits, and supplier collections with clearer references.'],
+            ['label' => 'Digital Services', 'detail' => 'Accept payments for subscriptions, agencies, creators, software, and remote work.'],
+        ],
+        'principles' => [
+            ['name' => 'Clear payment status', 'copy' => 'Every checkout should make pending, paid, failed, and settled states easy to understand.'],
+            ['name' => 'Reconciliation first', 'copy' => 'Amounts, fees, references, methods, and settlement currency should travel with the payment record.'],
+            ['name' => 'Compliance-aware access', 'copy' => 'Available methods, stablecoin features, and corridors can vary by market, partner readiness, and review.'],
+        ],
+        'cta' => [
+            'eyebrow' => 'Checkout access',
+            'title' => 'Start accepting payments with eCoinza Checkout.',
+            'body' => 'Join the waitlist for hosted checkout pages, payment links, API updates, and merchant onboarding availability.',
+            'button' => 'Join the Checkout Waitlist',
         ],
     ],
     'contact' => [
